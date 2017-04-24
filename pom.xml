@@ -5,9 +5,11 @@
   <groupId>com.dell.cpsd.apm.nagios</groupId>
   <artifactId>application-performance-monitoring</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>APM Nagios Parent</name>
 
    <modules>
-        <module>apm-nagios</module>       
+        <module>apm-nagios</module> 
+        <module>apm-nagios-distribution</module>    
     </modules>
 
    <parent>
@@ -17,13 +19,31 @@
     </parent>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Docker Registry local -->
+        <docker.registry>docker-dev-local.art.local</docker.registry>
+        <java.version>1.8</java.version>
+
+        <!-- Internal libraries -->
+        <common-rabbitmq-version>1.1-SNAPSHOT</common-rabbitmq-version>
+        <!-- Common libraries -->
         <spring-boot.version>1.5.1.RELEASE</spring-boot.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Common test libraries -->
+        <!-- Maven plugins -->
+        <plugin-maven-compiler-version>3.3</plugin-maven-compiler-version><!-- there is 3.5.1 already -->
+        <plugin-maven-dependency-version>2.10</plugin-maven-dependency-version>
+        <plugin-jsonschema2pojo-version>0.4.27</plugin-jsonschema2pojo-version>
+        <docker-maven-plugin-version>0.4.13</docker-maven-plugin-version>
         <spring-rabbit-test.version>1.7.0.RELEASE</spring-rabbit-test.version>
         <httpcore.version>4.4</httpcore.version>
-        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
+
+    <scm>
+        <connection>scm:git:${scm.git.repo.url}/VCE-Symphony/application-performance-monitoring.git</connection>
+        <tag>HEAD</tag>
+    </scm>
+
 
     <dependencyManagement>
         <dependencies>
