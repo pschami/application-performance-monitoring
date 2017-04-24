@@ -1,5 +1,5 @@
 [Unit]
-Description=Dell FRU PAQX service
+Description=APM Nagios service
 After=network.target docker.service dell-services.service
 [Service]
 Type=simple
