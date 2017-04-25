@@ -7,7 +7,7 @@ package com.dell.cpsd.apm.nagios.services;
 
 
 /**
- * Endpoint registration custom exception class.
+ * Application Performance custom exception class.
  * <p>
  * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>

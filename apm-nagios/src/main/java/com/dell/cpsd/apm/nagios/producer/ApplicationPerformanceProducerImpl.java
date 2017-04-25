@@ -13,7 +13,7 @@ import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 /**
- * Endpoint registration Producer implementation class.
+ * Application Performance Producer implementation class.
  * <p>
  * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
@@ -42,7 +42,7 @@ public class ApplicationPerformanceProducerImpl implements ApplicationPerformanc
     {
         if (event == null)
         {
-            throw new ApplicationPerformanceException("Endpoint discovered message is null.");
+            throw new ApplicationPerformanceException("Application Performance message is null.");
         }
 
         rabbitTemplate.convertAndSend(applicationPerformanceEventExchange.getName(),
