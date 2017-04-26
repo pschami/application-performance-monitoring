@@ -61,12 +61,7 @@ public class ApplicationPerformanceRabbitConfig
     
     public static final  String BINDING_APM_REQUEST                      = "dell.cpsd.apm.request";
       
-    /**
-     * The name of the ping queue for application performance service
-     */
-    private static final String QUEUE_APM_REQUEST                        = "queue.dell.cpsd.apm.request";
-    
-    
+        
     /*
      * The logger for this class.
      */
@@ -83,7 +78,7 @@ public class ApplicationPerformanceRabbitConfig
     /**
      * application performance Event Exchange
      */
-    private static final String EXCHANGE_APPLICATION_PERFORMANCE_EVENT    = "exchange.dell.cpsd.apm.event";
+    private static final String EXCHANGE_APPLICATION_PERFORMANCE_EVENT    = "exchange.dell.cpsd.apm.nagios.event";
    
     /*
      * The RabbitMQ connection factory.
@@ -230,29 +225,6 @@ public class ApplicationPerformanceRabbitConfig
     {
         return new TopicExchange(EXCHANGE_APPLICATION_PERFORMANCE_EVENT);
     }
-
-   
-    @Bean
-    Queue queryRequestQueue()
-    {
-        return new Queue(QUEUE_APM_REQUEST);
-    }
-
-   
-    /*
-     * TODO request queue binding
-    
-    @Bean
-    public Binding endpointRegistrationRequestQueueBinding()
-    {
-        final StringBuilder builder = new StringBuilder();
-
-        builder.append(BINDING_APM_REQUEST);
-
-        String binding = builder.toString();
-
-        return BindingBuilder.bind(queryRequestQueue()).to(endpointRegistrationRequestExchange()).with(binding);
-    }*/
 
     /**
      * This returns the <code>AmqpAdmin</code> for the connection factory.
