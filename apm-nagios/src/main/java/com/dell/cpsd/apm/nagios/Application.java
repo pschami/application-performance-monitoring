@@ -71,7 +71,7 @@ public class Application extends AsyncConfigurerSupport {
 
 			}
 			
-		}, 5, 5, TimeUnit.SECONDS);
+		}, 5, 50, TimeUnit.SECONDS);
 	}
 
 }
