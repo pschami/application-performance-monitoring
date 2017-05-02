@@ -44,34 +44,13 @@ public class Application extends AsyncConfigurerSupport {
 
 		final ApplicationPerformanceProducer producer = applicationContext
 				.getBean(ApplicationPerformanceProducer.class);
-
 		
-			
-		Executors.newScheduledThreadPool(1).scheduleAtFixedRate(new Runnable() {
-
-			@Override
-			public void run() {
-				try {				
-					count++;				
+		ApplicationPerformanceEvent event = new ApplicationPerformanceEvent("high",
+					uuid.toString(), new Date(), "patricks-pc", "the message from nagios");
+		
+		producer.publishApplicationPerformanceEvent(event);
 					
-					ApplicationPerformanceEvent event = new ApplicationPerformanceEvent("high",
-							uuid.toString(), new Date(), "patricks-pc", "the message from nagios");
-
-					producer.publishApplicationPerformanceEvent(event);
-					
-					if (count > 5) {
-						count = 0;
-						uuid = UUID.randomUUID();						
-					}						
-					
-				} catch (ApplicationPerformanceException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-			
-		}, 5, 50, TimeUnit.SECONDS);
+				
 	}
 
 }
