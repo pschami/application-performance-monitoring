@@ -38,7 +38,22 @@ public class Application extends AsyncConfigurerSupport {
 	public static UUID uuid = UUID.randomUUID();
 	
 	public static void main(String[] args) throws Exception {
-
+		
+		String impactedSystem = "vxrack 0";
+		String errorMessage = "CPU % Ready remains above 10% for 6 consecutive 10-minute periods.";
+		
+		for(int i = 0; i < args.length; i++) {
+			if (i == 0)
+			{
+				impactedSystem = args[i];
+			}
+			
+			if (i == 1)
+			{
+				errorMessage = args[i];
+			}
+        }
+		
 		ApplicationContext applicationContext = new SpringApplicationBuilder().sources(Application.class)
 				.bannerMode(Banner.Mode.LOG).run(args);
 
@@ -46,7 +61,7 @@ public class Application extends AsyncConfigurerSupport {
 				.getBean(ApplicationPerformanceProducer.class);
 		
 		ApplicationPerformanceEvent event = new ApplicationPerformanceEvent("high",
-					uuid.toString(), new Date(), "patricks-pc", "the message from nagios");
+					uuid.toString(), new Date(), impactedSystem, errorMessage);
 		
 		producer.publishApplicationPerformanceEvent(event);
 					
