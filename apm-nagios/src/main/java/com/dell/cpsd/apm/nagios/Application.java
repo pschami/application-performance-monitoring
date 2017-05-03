@@ -55,7 +55,7 @@ public class Application extends AsyncConfigurerSupport {
         }
 		
 		ApplicationContext applicationContext = new SpringApplicationBuilder().sources(Application.class)
-				.bannerMode(Banner.Mode.LOG).run(args);
+				.bannerMode(Banner.Mode.OFF).run(args);
 
 		final ApplicationPerformanceProducer producer = applicationContext
 				.getBean(ApplicationPerformanceProducer.class);
