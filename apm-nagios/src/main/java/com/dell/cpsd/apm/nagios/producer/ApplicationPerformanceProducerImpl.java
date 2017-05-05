@@ -18,8 +18,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
  * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
- * @version 1.0
- * @since 1.0
+ * @version 0.1
+ * @since 0.1
  */
 public class ApplicationPerformanceProducerImpl implements ApplicationPerformanceProducer
 {
@@ -37,6 +37,9 @@ public class ApplicationPerformanceProducerImpl implements ApplicationPerformanc
         this.rabbitTemplate = rabbitTemplate;
     }
 
+    /* (non-Javadoc)
+     * @see com.dell.cpsd.apm.nagios.producer.ApplicationPerformanceProducer#publishApplicationPerformanceEvent(com.dell.cpsd.apm.nagios.api.ApplicationPerformanceEvent)
+     */
     @Override
     public void publishApplicationPerformanceEvent(ApplicationPerformanceEvent event) throws ApplicationPerformanceException
     {

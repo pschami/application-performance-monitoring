@@ -20,8 +20,8 @@ import org.springframework.context.annotation.Configuration;
  * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
- * @version 1.0
- * @since 1.0
+ * @version 0.1
+ * @since 0.1
  */
 @Configuration
 @ComponentScan(ApplicationPerformanceProductionConfig.CONFIG_PACKAGE)

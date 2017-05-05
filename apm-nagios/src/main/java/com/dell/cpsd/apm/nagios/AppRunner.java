@@ -1,3 +1,6 @@
+/**
+ * Copyright © 2017 Dell Inc. or its subsidiaries. All Rights Reserved.
+ */
 package com.dell.cpsd.apm.nagios;
 
 import com.dell.cpsd.apm.nagios.capabilityintegration.CapabilityRegistryIntegration;
@@ -13,8 +16,8 @@ import org.springframework.stereotype.Component;
  * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
- * @version 1.0
- * @since 1.0
+ * @version 0.1
+ * @since 0.1
  */
 @Component
 public class AppRunner implements CommandLineRunner

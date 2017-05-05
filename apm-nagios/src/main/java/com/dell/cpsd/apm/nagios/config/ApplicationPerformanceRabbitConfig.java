@@ -12,7 +12,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -45,8 +44,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  * Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
- * @version 1.0
- * @since 1.0
+ * @version 0.1
+ * @since 0.1
  */
 @Configuration
 @Import(ApplicationPerformancePropertiesConfig.class)
@@ -57,10 +56,7 @@ public class ApplicationPerformanceRabbitConfig
      * The routing key for application performance event
      */
     public static final  String ROUTING_KEY_APPLICATION_PERFORMANCE         = "dell.cpsd.apm.nagios.event";
-    
-    
-    public static final  String BINDING_APM_REQUEST                      = "dell.cpsd.apm.request";
-      
+   
         
     /*
      * The logger for this class.
@@ -98,7 +94,7 @@ public class ApplicationPerformanceRabbitConfig
      * This returns the host name for the service.
      *
      * @return The host name for the service.
-     * @since 1.0
+     * @since 0.1
      */
     @Bean
     String hostName()
@@ -218,7 +214,7 @@ public class ApplicationPerformanceRabbitConfig
      * events.
      *
      * @return The <code>FanoutExchange</code> for application performance messages.
-     * @since 1.0
+     * @since 0.1
      */
     @Bean
     TopicExchange applicationPerformanceEventExchange()
@@ -230,7 +226,7 @@ public class ApplicationPerformanceRabbitConfig
      * This returns the <code>AmqpAdmin</code> for the connection factory.
      *
      * @return The AMQP admin object for the connection factory.
-     * @since 1.0
+     * @since 0.1
      */
     @Bean
     AmqpAdmin amqpAdmin()
