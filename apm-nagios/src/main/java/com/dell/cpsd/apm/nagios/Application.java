@@ -1,6 +1,4 @@
-package com.dell.cpsd.apm.nagios; /**
-									* Copyright &copy; 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
-									*/
+package com.dell.cpsd.apm.nagios;
 
 import java.util.Date;
 import java.util.UUID;
@@ -33,39 +31,36 @@ import com.dell.cpsd.hdp.capability.registry.client.binding.config.CapabilityReg
 @EnableAsync
 @Import(CapabilityRegistryBindingManagerConfig.class)
 public class Application extends AsyncConfigurerSupport {
-	
+
 	public static int count = 0;
 	public static UUID uuid = UUID.randomUUID();
-	
+
 	public static void main(String[] args) throws Exception {
-		
+
 		String impactedSystem = "vxrack 0";
 		String errorMessage = "CPU % Ready remains above 10% for 6 consecutive 10-minute periods.";
-		
-		for(int i = 0; i < args.length; i++) {
-			if (i == 0)
-			{
+
+		for (int i = 0; i < args.length; i++) {
+			if (i == 0) {
 				impactedSystem = args[i];
 			}
-			
-			if (i == 1)
-			{
+
+			if (i == 1) {
 				errorMessage = args[i];
 			}
-        }
-		
+		}
+
 		ApplicationContext applicationContext = new SpringApplicationBuilder().sources(Application.class)
 				.bannerMode(Banner.Mode.OFF).run(args);
 
 		final ApplicationPerformanceProducer producer = applicationContext
 				.getBean(ApplicationPerformanceProducer.class);
-		
-		ApplicationPerformanceEvent event = new ApplicationPerformanceEvent("high",
-					uuid.toString(), new Date(), impactedSystem, errorMessage);
-		
+
+		ApplicationPerformanceEvent event = new ApplicationPerformanceEvent("high", uuid.toString(), new Date(),
+				impactedSystem, errorMessage);
+
 		producer.publishApplicationPerformanceEvent(event);
-					
-				
+
 	}
 
 }
