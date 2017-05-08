@@ -30,7 +30,7 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh "mvn -U clean compile"
+                sh "mvn -U clean install -DskipTests=true -DskipITs"
             }
         }
         stage('Prepare test services') {
@@ -46,17 +46,17 @@ pipeline {
         }
 	stage('Package') {
 		steps {
-                sh "mvn package -DskipTests -DskipITs"
+                sh "mvn package -DskipTests=true -DskipITs"
             }
 	}
         stage('Deploy') {
 	    when {
                 expression {
-                    return env.BRANCH_NAME ==~ /master|release\/.*/
+                    return env.BRANCH_NAME ==~ /master|develop|release\/.*/
                 }
             }
             steps {
-                sh "mvn help:active-profiles deploy -DskipTests -DskipITs -P buildDockerImageOnJenkins -Ddocker.registry=docker-dev-local.art.local"
+                sh "mvn install -DskipTests=true -DskipITs -P buildDockerImageOnJenkins -Ddocker.registry=docker-dev-local.art.local"
             }
         }
         stage('SonarQube Analysis') {
@@ -73,29 +73,6 @@ pipeline {
                                 -Dsonar.dependencyCheck.reportPath=${WORKSPACE}/report/dependency-check-report.xml
                         '''    
                 }
-            }
-        }
-        stage('NexB Scan') {
-	    when {
-                expression {
-                    return env.BRANCH_NAME ==~ /master|release\/.*/
-                }
-            }
-            steps {
-                dir('/opt') {
-                    checkout([$class: 'GitSCM', 
-                              branches: [[name: '*/master']], 
-                              doGenerateSubmoduleConfigurations: false, 
-                              extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'nexB']], 
-                              submoduleCfg: [], 
-                              userRemoteConfigs: [[url: 'https://github.com/nexB/scancode-toolkit.git']]])
-                }				
-            	sh "mkdir -p /opt/nexB/nexb-output/"
-                sh "sh /opt/nexB/scancode --help"
-                sh "sh /opt/nexB/scancode --format html ${WORKSPACE} /opt/nexB/nexb-output/apm-nagios-parent.html"
-                sh "sh /opt/nexB/scancode --format html-app ${WORKSPACE} /opt/nexB/nexb-output/apm-nagios-parent-grap.html"	       
-	        sh "mv /opt/nexB/nexb-output/ ${WORKSPACE}/"
-	       	archiveArtifacts '**/nexb-output/**'
             }
         }
         stage('Third Party Audit') {
@@ -135,6 +112,30 @@ pipeline {
                             --file ${WORKSPACE}/target/apm-nagios-parent-1.0-SNAPSHOT.jar
                     '''
                 }
+            }
+        }
+        stage('NexB Scan') {
+	    when {
+                expression {
+                    return env.BRANCH_NAME ==~ /master|develop|release\/.*/
+                }
+            }
+            steps {
+                sh "mvn clean"
+                dir('/opt') {
+                    checkout([$class: 'GitSCM', 
+                              branches: [[name: '*/master']], 
+                              doGenerateSubmoduleConfigurations: false, 
+                              extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'nexB']], 
+                              submoduleCfg: [], 
+                              userRemoteConfigs: [[url: 'https://github.com/nexB/scancode-toolkit.git']]])
+                }				
+            	sh "mkdir -p /opt/nexB/nexb-output/"
+                sh "sh /opt/nexB/scancode --help"
+                sh "sh /opt/nexB/scancode --format html ${WORKSPACE} /opt/nexB/nexb-output/apm-nagios-parent.html"
+                sh "sh /opt/nexB/scancode --format html-app ${WORKSPACE} /opt/nexB/nexb-output/apm-nagios-parent-grap.html"	       
+	        sh "mv /opt/nexB/nexb-output/ ${WORKSPACE}/"
+	       	archiveArtifacts '**/nexb-output/**'
             }
         }
     }

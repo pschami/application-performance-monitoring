@@ -2,21 +2,45 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.dell.cpsd.apm.nagios</groupId>
-    <artifactId>apm-nagios-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
+
+    <parent>
+        <groupId>com.dell.cpsd.apm.nagios</groupId>
+        <artifactId>apm-nagios-parent</artifactId>
+        <version>0.0.1</version>
+    </parent>
   
-  <artifactId>apm-nagios</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.dell.cpsd.apm.nagios</groupId>
+    <artifactId>apm-nagios</artifactId>
+    <version>0.0.1</version>
+
+    <licenses>
+        <license>
+            <name>Eclipse Public License - v 1.0</name>
+            <url>http://www.eclipse.org/legal/epl-v10.html</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Frank Rouse</name>
+            <email>frank.rouse@dell.com</email>
+            <organization>com.dell.cpsd</organization>
+            <organizationUrl>https://github.com/rousef42</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/dellemc-symphony/application-performance-monitoring.git</connection>
+        <developerConnection>scm:git:git://github.com/dellemc-symphony/application-performance-monitoring.git</developerConnection>
+        <url>https://github.com/dellemc-symphony/application-performance-monitoring/tree/master</url>
+    </scm>
   
     <dependencies>
 
         <dependency>
             <groupId>com.dell.cpsd.endpoint.registration</groupId>
             <artifactId>endpoint-registration-api</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>0.1</version>
             <classifier>schemas</classifier>
             <type>zip</type>
         </dependency>
@@ -24,7 +48,7 @@
         <dependency>
             <groupId>com.dell.cpsd.hdp.capability.registry</groupId>
             <artifactId>hdp-capability-registry-api</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>0.1</version>
             <classifier>schemas</classifier>
             <type>zip</type>
             <exclusions>
@@ -39,7 +63,7 @@
             <groupId>com.dell.cpsd.hdp.capability.registry</groupId>
             <artifactId>hdp-capability-registry-client</artifactId>
             <type>jar</type>
-            <version>0.2-SNAPSHOT</version>
+            <version>0.2</version>
             <exclusions>
                 <exclusion>  <!-- declare the exclusion here -->
                     <groupId>org.slf4j</groupId>
@@ -59,7 +83,7 @@
         <dependency>
             <groupId>com.dell.cpsd.common.messaging</groupId>
             <artifactId>common-rabbitmq</artifactId>
-            <version>1.2-SNAPSHOT</version>
+            <version>1.3</version>
         </dependency>
 
         <dependency>
@@ -80,7 +104,7 @@
         <dependency>
             <groupId>com.dell.cpsd.component</groupId>
             <artifactId>component-common-core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -202,7 +226,7 @@
                     <dependency>
                         <groupId>com.dell.cpsd.common.messaging</groupId>
                         <artifactId>common-contract-enricher</artifactId>
-                        <version>1.1-SNAPSHOT</version>
+                        <version>1.3</version>
                     </dependency>
                 </dependencies>
                 <executions>
@@ -268,6 +292,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
         </plugins>
     </build>  
