@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.dell.cpsd.apm.nagios</groupId>
         <artifactId>apm-nagios-parent</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2-SNAPSHOT</version>
     </parent>
 
     <groupId>com.dell.cpsd.apm.nagios</groupId>

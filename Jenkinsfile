@@ -56,7 +56,7 @@ pipeline {
                 }
             }
             steps {
-                sh "mvn install -DskipTests=true -DskipITs -P buildDockerImageOnJenkins -Ddocker.registry=docker-dev-local.art.local"
+                sh "mvn deploy -DskipTests=true -DskipITs -P buildDockerImageOnJenkins -Ddocker.registry=docker-dev-local.art.local"
             }
         }
         stage('SonarQube Analysis') {
