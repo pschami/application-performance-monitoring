@@ -16,9 +16,12 @@ Before using this demo, download or build the following Project Symphony contain
 * cpsd-coprhd-adapter-service  
 
 Make sure the following is installed:
-* Java Development Kit (version 8)
-* Apache Maven 3.0.5+ (including ~/.m2/settings.xml providing relevant repositories)
-* Docker daemon
+```
+Java Development Kit (version 8)
+Apache Maven 3.0.5+ (including ~/.m2/settings.xml providing relevant repositories)
+Docker daemon
+RabbitMQ  3.6.6 
+```
 
 ## Building
 Run the following commands to compile the code and create a Docker image:
