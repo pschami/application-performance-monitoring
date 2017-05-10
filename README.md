@@ -26,7 +26,6 @@ Make sure the following is installed:
 Run the following commands to compile the code and create a Docker image:
   
 ```
-mvn compile -U clean  
 mvn install
 ```  
 
