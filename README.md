@@ -15,15 +15,14 @@ Before using this demo, download or build the following Project Symphony contain
 * cpsd-core-endpoint-registry-service
 * cpsd-coprhd-adapter-service  
 
-Make sure the following is installed:
+Verify that the following tools are installed:
 
 * Java Development Kit (version 8)
 * Apache Maven 3.0.5+ (including ~/.m2/settings.xml providing relevant repositories)
 * Docker daemon
-* RabbitMQ  3.6.6 
 
 ## Building
-Run the following commands to compile the code and create a Docker image:
+Run the following command to compile the code and create a Docker image:
   
 ```
 mvn install
@@ -34,7 +33,7 @@ The code is packaged in a JAR file inside a Docker container.
 ## Deploying
 The Docker image needs to connect to a RabbitMQ service on port 5672 and to a capability registry.
 
-The application is designed to create an alert when called by Nagios.
+The application creates an alert when called by Nagios.
 
 **Example commands.cfg entry to create the new handler:**
 
@@ -83,11 +82,10 @@ When alerts are triggered, a message is placed on the AMQP service bus and can b
 
 ## Contributing
 Project Symphony is a collection of services and libraries housed at [GitHub][github].
-Contribute code and make submissions at the relevant GitHub repository level.
 
-See [our documentation][contributing] for details on how to contribute.
+Contribute code and make submissions at the relevant GitHub repository level. See [our documentation][contributing] for details on how to contribute.
 ## Community
-Reach out to us on the Slack [#symphony][slack] channel. Request an invite at [{code}Community][codecommunity].
+Reach out to us on the Slack [#symphony][slack] channel by requesting an invite at [{code}Community][codecommunity].
 
 You can also join [Google Groups][googlegroups] and start a discussion.
 
