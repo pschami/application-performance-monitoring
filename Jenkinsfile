@@ -44,11 +44,6 @@ pipeline {
                 sh "docker exec apm-nagios-test-${BUILD_NUMBER} mvn clean verify -DskipDocker=true"
             }
         }
-	stage('Package') {
-		steps {
-                sh "mvn package -DskipTests=true -DskipITs"
-            }
-	}
         stage('Deploy') {
 	    when {
                 expression {
@@ -56,7 +51,7 @@ pipeline {
                 }
             }
             steps {
-                sh "mvn deploy -DskipTests=true -DskipITs -P buildDockerImageOnJenkins -Ddocker.registry=docker-dev-local.art.local"
+		sh "mvn deploy -P buildDockerImageOnJenkins -DdockerImage.tag=application-performance-monitoring-develop.${env.BUILD_NUMBER} -Ddocker.registry=docker-dev-local.art.local -DdeleteDockerImages=true -DskipTests=true -DskipITs"
             }
         }
         stage('SonarQube Analysis') {
